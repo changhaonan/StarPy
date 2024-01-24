@@ -1,0 +1,9 @@
+[submodule "external/BundleTrack"]
+	path = external/BundleTrack
+	url = git@github.com:changhaonan/BundleTrack.git
+[submodule "external/KinectFusion-python"]
+	path = external/KinectFusion-python
+	url = git@github.com:changhaonan/KinectFusion-python.git
+[submodule "external/yaml-cpp"]
+	path = external/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
