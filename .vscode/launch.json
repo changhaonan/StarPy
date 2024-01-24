@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "detector (sp)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/BundleTrack/external/PointFeatureHub2/run.py",
+            "cwd": "${workspaceFolder}/external/BundleTrack/external/PointFeatureHub2/",
+            "args": [
+                "task=detect",
+                "detect=super_point",
+                "draw_keypoints=false"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "bundle_track_colmap",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bundle_track_colmap",
+            "args": [
+                "${workspaceFolder}/config.yml",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+    ]
+}
