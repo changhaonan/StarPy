@@ -8,7 +8,7 @@ bundle:
   robust_delta: 0.005
   subset_selection_method: greedy_rot
   window_size: 2
-data_dir: /home/harvey/Project/StarPy/test_data/exp_0/camera_2
+data_dir: /home/harvey/Project/StarPy/test_data/exp_1/camera_2
 debug_dir: /home/harvey/Project/StarPy/log
 depth_processing:
   bilateral_filter:
@@ -32,7 +32,7 @@ keyframe:
   min_feat_num: 0
   min_interval: 1
   min_rot: 10
-mask_dir: /home/harvey/Project/StarPy/test_data/exp_0/camera_2/seg
+mask_dir: /home/harvey/Project/StarPy/test_data/exp_1/camera_2/seg
 model_dir: /home/harvey/Project/StarPy/assets/unit_cube.obj
 model_free: true
 model_name: unit_cube

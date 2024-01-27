@@ -15,7 +15,7 @@ if __name__ == "__main__":
         config = yaml.load(f, Loader=yaml.FullLoader)
     # Update config
     fix_camera_id = 2
-    config["data_dir"] = os.path.join(root_dir, "test_data", "exp_0", f"camera_{fix_camera_id}")
+    config["data_dir"] = os.path.join(root_dir, "test_data", "exp_1", f"camera_{fix_camera_id}")
     config["mask_dir"] = os.path.join(config["data_dir"], "seg")
     config["model_dir"] = os.path.join(asset_dir, "unit_cube.obj")
     config["debug_dir"] = os.path.join(root_dir, "log")
