@@ -10,3 +10,6 @@
 [submodule "external/pytracking"]
 	path = external/pytracking
 	url = https://github.com/visionml/pytracking.git
+[submodule "external/GroundingDINO"]
+	path = external/GroundingDINO
+	url = https://github.com/IDEA-Research/GroundingDINO.git
