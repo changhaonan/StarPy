@@ -70,14 +70,14 @@ if __name__ == "__main__":
 
     root_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = "test_data"
-    exp_name = "recon/episode1-0"
+    exp_name = "recon/episode1-2"
     data_path = os.path.join(root_dir, "test_data", exp_name)
     img_format = args.img_format
     num_obj = args.num_obj
     use_mask = True
     outlier_method = args.outlier_method
 
-    frame = 10
+    frame = 1200
     # Parse intrinsics
     with open(os.path.join(data_path, "intrinsics.txt")) as f:
         lines = f.readlines()
@@ -100,6 +100,9 @@ if __name__ == "__main__":
     for i in range(num_obj):
         if use_mask:
             seg_image = cv2.imread(os.path.join(data_path, "seg", f"{frame}_{i}.png"), cv2.IMREAD_UNCHANGED)
+            # Apply erosion to remove noise
+            kernel = np.ones((10, 10), np.uint8)
+            seg_image = cv2.erode(seg_image, kernel, iterations=1)
             color_mask_image = color_image * seg_image[:, :, None]
             depth_mask_image = depth_image * seg_image
 
@@ -108,7 +111,7 @@ if __name__ == "__main__":
 
         # Remove outliers
         if outlier_method == "statistical":
-            cl, ind = color_pcd.remove_statistical_outlier(nb_neighbors=20, std_ratio=1.0)
+            cl, ind = color_pcd.remove_statistical_outlier(nb_neighbors=100, std_ratio=1.0)
         elif outlier_method == "radius":
             cl, ind = color_pcd.remove_radius_outlier(nb_points=5, radius=1.0)
         else:

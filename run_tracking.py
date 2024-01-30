@@ -32,6 +32,10 @@ if __name__ == "__main__":
     pytracking_result_dir = os.path.join(pytracking_dir, "tracking_results", "rts")
     img_format = args.img_format
     num_obj = args.num_obj
+    # Compute number of frames
+    img_list = os.listdir(os.path.join(data_dir, f"color"))
+    img_list = [x for x in img_list if x.endswith(".png") or x.endswith(".jpg")]
+    num_frame = len(img_list)
     for idx_obj in range(num_obj):
         print(f"Processing object {idx_obj}...")
         os.system(
@@ -45,8 +49,8 @@ if __name__ == "__main__":
         seg_img_list.sort(key=lambda x: int(x.split(".")[0].split("_")[-1]))
 
         # Read all images
-        for idx, seg_img_file in tqdm(enumerate(seg_img_list)):
-            seg_img_file_path = os.path.join(pytracking_result_dir, seg_img_file)
+        for idx in tqdm(range(num_frame)):
+            seg_img_file_path = os.path.join(pytracking_result_dir, f"rts50seg_{idx + 1}.png")  # 1-index
             goal_img_file_path = os.path.join(seg_dir, f"{idx}_{idx_obj}.png")
             # # Copy the image
             # os.system(f"cp {seg_img_file_path} {goal_img_file_path}")
@@ -55,3 +59,9 @@ if __name__ == "__main__":
             seg_img = seg_img[:, :, 0]
             seg_img = np.where(seg_img == 0, 0, 255)
             cv2.imwrite(goal_img_file_path, seg_img)
+
+        # Read masks information
+        print(f"Mask is saved to: {os.path.join(data_dir, f'bbox_{idx_obj}.txt')}")
+        os.system(
+            f"cp {os.path.join(pytracking_result_dir, 'rts50', 'video_%d_1.txt')} {os.path.join(data_dir, f'bbox_{idx_obj}.txt')}"
+        )
