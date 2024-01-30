@@ -13,3 +13,6 @@
 [submodule "external/GroundingDINO"]
 	path = external/GroundingDINO
 	url = https://github.com/IDEA-Research/GroundingDINO.git
+[submodule "external/EfficientSAM"]
+	path = external/EfficientSAM
+	url = https://github.com/yformer/EfficientSAM.git
